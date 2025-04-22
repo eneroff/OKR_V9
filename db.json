@@ -1,0 +1,14 @@
+[
+    {
+      "id": "1",
+      "name": "FitWorld",
+      "rating": 4.5,
+      "createdAt": "2025-04-22T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "GymPlus",
+      "rating": 4.2,
+      "createdAt": "2025-04-20T12:00:00Z"
+    }
+  ]
