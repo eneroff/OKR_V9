@@ -22,9 +22,8 @@ const writeDatabase = (data) => {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
 };
 
-// Добавленный маршрут по адресу /
 app.get('/', (req, res) => {
-  res.send('Добро пожаловать в API для управления залами!');
+  res.send('Готово! Введите id');
 });
 
 app.get('/games', (req, res) => {
