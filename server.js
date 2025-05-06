@@ -51,10 +51,8 @@ app.post('/games', (req, res) => {
   const { name, rating } = req.body;
   let gyms = readDatabase();
 
-  // Удаляем дубликаты по id
   gyms = _.uniqBy(gyms, 'id');
 
-  // Определяем минимально доступный уникальный ID (в виде строки)
   const existingIds = gyms.map(g => parseInt(g.id)).filter(id => !isNaN(id));
   let newId = 1;
   while (existingIds.includes(newId)) {
