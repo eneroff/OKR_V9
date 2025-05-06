@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
+const _ = require('lodash'); // Добавлено
 
 dotenv.config();
 
@@ -48,12 +49,20 @@ app.get('/games/:id', (req, res) => {
 
 app.post('/games', (req, res) => {
   const { name, rating } = req.body;
-  const gyms = readDatabase();
+  let gyms = readDatabase();
 
-  const id = (gyms.length + 1).toString();
+  // Удаляем дубликаты по id
+  gyms = _.uniqBy(gyms, 'id');
+
+  // Определяем минимально доступный уникальный ID (в виде строки)
+  const existingIds = gyms.map(g => parseInt(g.id)).filter(id => !isNaN(id));
+  let newId = 1;
+  while (existingIds.includes(newId)) {
+    newId++;
+  }
+
   const createdAt = new Date().toISOString();
-
-  const newGym = { id, name, rating, createdAt };
+  const newGym = { id: newId.toString(), name, rating, createdAt };
   gyms.push(newGym);
 
   writeDatabase(gyms);
