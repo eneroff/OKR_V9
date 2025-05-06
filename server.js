@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
-const _ = require('lodash'); // Добавлено
+const _ = require('lodash');
 
 dotenv.config();
 
